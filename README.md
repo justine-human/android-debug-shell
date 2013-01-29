@@ -1,8 +1,7 @@
-android-ssl-bypass
+android-debug-shell
 ==================
 
-This is an Android debugging tool that can be used for bypassing SSL, even when certificate pinning is implemented, 
-as well as other debugging tasks. The tool runs as an interactive console.
+This is an Android debugging tool that can be used for many debugging tasks. The tool runs as an interactive console.
 
 The tool is based on a scriptable JDWP debugger using the JDI APIs (http://docs.oracle.com/javase/1.5.0/docs/guide/jpda/jdi/). 
 The architecture of the tool is plugin based in order to be able to load debugging code at runtime. Plugins can 
@@ -17,7 +16,7 @@ the ALLOW_ALL_HOSTNAME_VERIFIER.
 
 The hope is that the tool can be used as a starting point for further development. It is very much a work in progress, and will be frequently updated in the near future.
 
-A very beta version was presented at BlackHat USA 2012: http://media.blackhat.com/bh-us-12/Turbo/Diquet/BH_US_12_Diqut_Osborne_Mobile_Certificate_Pinning_Slides.pdf
+This is forked from https://github.com/iSECPartners/android-ssl-bypass of which a very beta version was presented at BlackHat USA 2012: http://media.blackhat.com/bh-us-12/Turbo/Diquet/BH_US_12_Diqut_Osborne_Mobile_Certificate_Pinning_Slides.pdf
 
 Requirements
 ==================
@@ -43,7 +42,7 @@ Requirements
 Basic Usage
 ==================
 
-    * Currently it is best to just run the binary from the AndroidSSLBypass root directory. Eventually 
+    * Currently it is best to just run the binary from the AndroidDebugShell root directory. Eventually 
     this will be fixed, but for now this is the only supported/tested usage.
 
     * To run SSLBypassJDIPlugin first install the included helper app AndroidSSLBypassHelperApp
@@ -119,7 +118,7 @@ Basic Usage
 
 After the plugin has been successfully initialized, do the action in the app that causes an SSL connection to be made. Breakpoints should be hit and handled via the initialized plugins.
 
-The TestJythonPlugin is a good example of how to write a custom plugin using Jython
+The TestJythonPlugin is a simple example of how to write a custom plugin using Jython
 SSLBypassJDIPlugin, AndroidSSLBypassHelperApp, SSLTestApp, twistedsslserver.py
 ==================
 
@@ -177,7 +176,7 @@ Testing
 Custom Jython Plugin Overview
 =====================
 
-This tool is rather poorly named "android-ssl-bypass" in that bypassing SSL is far from all it does. It was initally presented at conference where bypassing ssl was its main purpose. However, it was created to be an extensible debugging tool that can be used for a variety of debugging tasks. It might be more aptly named something like "android-debug-shell", and probably will be changed to that at some point. This aims to provide a basic guide for creating your own simple debugging plugins for the tool using Jython. The plugins can be written in Java as well, but Jython is the easiest method for extensibility.
+This aims to provide a basic guide for creating your own simple debugging plugins for the tool using Jython. The plugins can be written in Java as well, but Jython is the easiest method for extensibility.
 
 The power of Jython is that it lets us easily use and Java classes in the classpath. So we can import the Java Class AbstractJDIPlugin and create a Python class which extends it in order to create a plugin that can be loaded by the tool. In the future when the APIs are more solid there will be real documentation, but for now there is only source code :). Some jargon:
 
