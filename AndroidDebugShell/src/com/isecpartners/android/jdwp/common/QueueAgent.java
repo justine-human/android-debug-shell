@@ -26,12 +26,12 @@ public abstract class QueueAgent extends Thread implements QueueAgentInterface{
 
 	public Message getMessage() throws InterruptedException {
 		Message msg = this.messageIN.take();
-		QueueAgent.LOGGER.info("received msg: " + msg.getType().name());
+		QueueAgent.LOGGER.debug("received msg: " + msg.getType().name());
 		return msg;
 	}
 
 	public void sendMessage(Message msg) throws InterruptedException {
-		QueueAgent.LOGGER.info("sending msg: " + msg.getType().name());
+		QueueAgent.LOGGER.debug("sending msg: " + msg.getType().name());
 		this.messageOUT.put(msg);
 	}
 

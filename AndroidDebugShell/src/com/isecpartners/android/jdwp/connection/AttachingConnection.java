@@ -37,8 +37,7 @@ public class AttachingConnection extends AbstractConnection {
 		try {
 			this.sendMessage(new Message(Message.Type.CONNECTED, vm.description()));
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("FATAL ERROR: could not attach to vm: " + conn.description());
 		}
 	}
 
